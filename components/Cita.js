@@ -1,24 +1,33 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Button, TouchableHighlight} from 'react-native'
 import React from 'react'
 
 export default function Cita(props) {
+    
+    const procesoEliminar = (id) => {
+        props.eliminarCitas(id);
+    }
+
     return (
-        <View style={styles.cita}>
-            <View>
-                <Text style={styles.label}>Paciente: </Text>
-                <Text style={styles.texto}>{props.item.paciente}</Text>
-            </View>
-            <View>
-                <Text style={styles.label}>Propietario: </Text>
-                <Text style={styles.texto}>{props.item.propietario}</Text>
-            </View>
-            <View>
-                <Text style={styles.label}>Sintomas: </Text>
-                <Text style={styles.texto}>{props.item.sintomas}</Text>
-            </View>
-            
+    <View style={styles.cita}>
+        <View>
+            <Text style={styles.label}>Paciente: </Text>
+            <Text style={styles.texto}>{props.item.paciente}</Text>
         </View>
-    )
+        <View>
+            <Text style={styles.label}>Propietario: </Text>
+            <Text style={styles.texto}>{props.item.propietario}</Text>
+        </View>
+        <View>
+            <Text style={styles.label}>Sintomas: </Text>
+            <Text style={styles.texto}>{props.item.sintomas}</Text>
+        </View>
+        <View>
+            <TouchableHighlight onPress={()=> procesoEliminar(props.item.id)} style={styles.btnEliminar}>
+                <Text style={styles.textoEliminar}>Eliminar</Text>
+            </TouchableHighlight>
+        </View>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -37,5 +46,15 @@ const styles = StyleSheet.create({
     },
     texto: {
         fontSize: 18,
+    },
+    btnEliminar: {
+        padding: 10,
+        backgroundColor: 'blue',
+        marginVertical: 10
+    },
+    textoEliminar: {
+        color: '#fff',
+        fontWeight: 'bold',
+        textAlign: 'center'
     }
 })
